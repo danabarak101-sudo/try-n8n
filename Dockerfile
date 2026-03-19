@@ -1,21 +1,17 @@
 # 1. שימוש בתמונה רשמית של פייתון 3.11 (גרסת slim לחסכון במקום)
 FROM python:3.11-slim
 
-# 2. הגדרת תיקיית העבודה בתוך הקונטיינר
+# קביעת תיקיית העבודה בתוך הקונטיינר
 WORKDIR /app
 
-# 3. העתקת קובץ הדרישות (requirements) קודם כל
-# זה עוזר ל-Docker להשתמש במטמון (Cache) ולא להתקין הכל מחדש בכל שינוי קוד
-COPY requirements.txt .
+# העתקת קובץ הדרישות (אם קיים) והתקנתו
+# במידה ואין לך requirements.txt, נתקין ישירות את pytest
+COPY requirements.txt* .
+RUN pip install --no-cache-dir pytest && \
+    if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-# 4. התקנת הספריות הדרושות (כמו requests)
-RUN pip install --no-cache-dir -r requirements.txt
-
-# 5. העתקת שאר קבצי הקוד מהמחשב שלך לתוך הקונטיינר
+# העתקת כל קבצי הפרויקט לתוך הקונטיינר
 COPY . .
 
-# 6. הגדרת משתנה סביבה כדי שהפלט של פייתון יודפס מיד לטרמינל (מעולה ל-Logs)
-ENV PYTHONUNBUFFERED=1
-
-# 7. הפקודה שתרוץ כשהקונטיינר עולה
-CMD ["python", "main.py"]
+# הגדרת פקודת ברירת המחדל להרצת הטסטים
+CMD ["pytest", "test_func.py"]
