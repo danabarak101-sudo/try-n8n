@@ -15,7 +15,7 @@ def parse_args():
     # הגדרת ה-Parser לקבלת הפרמטרים מה-n8n
     parser = argparse.ArgumentParser(description="Run automation tests")
     
-    parser.add_argument("-m", "--machine", required=True, help="Machine name")
+    parser.add_argument("-m", "--machine_name", required=True, help="Machine name")
     parser.add_argument("-v", "--version", required=True, help="Version")
     parser.add_argument("-u", "--user", required=True, help="Username")
     parser.add_argument("-p", "--password", required=True, help="Password")
