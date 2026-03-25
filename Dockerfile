@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir pytest && \
 COPY . .
 
 # הגדרת פקודת ברירת המחדל להרצת הטסטים
-CMD ["pytest", "-vs", "test_func.py"]
+CMD python3 -m main --machine_name $VM --version $VERSION --user $USER --password $PASSWORD
