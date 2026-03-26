@@ -23,12 +23,12 @@ def args():
 if __name__ == "__main__":
     args = args()
     command_str = (
-            f"python -m pytest test_func.py -vs "
-            f"--mname {args.machine_name} "
-            f"--mver {args.version} "
-            f"--muser {args.user} "
-            f"--mpass {args.password}"
-        )
+        f"python3 -m pytest test_func.py -vs "
+        f"--mname '{args.machine_name}' "
+        f"--mver '{args.version}' "
+        f"--muser '{args.user}' "
+        f"--mpass '{args.password}'"
+    )
     print(f"Executing command: {command_str}")
     
     result = subprocess.run(
