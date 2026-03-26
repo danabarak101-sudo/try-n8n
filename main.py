@@ -12,14 +12,12 @@ def multiple(num1, num2):
     return num1 * num2
 
 def args():
-    # הגדרת ה-Parser לקבלת הפרמטרים מה-n8n
-    parser = argparse.ArgumentParser(description="Run automation tests")
-    
-    parser.add_argument("-m", "--mname", required=True, help="Machine name")
-    parser.add_argument("-v", "--mver", required=True, help="Version")
-    parser.add_argument("-u", "--muser", required=True, help="Username")
-    parser.add_argument("-p", "--mpass", required=True, help="Password")
-    
+    parser = argparse.ArgumentParser()
+    # כאן אנחנו מגדירים את הדגלים ש-n8n שולח (-m, -v וכו')
+    parser.add_argument("-m", "--machine_name", required=True)
+    parser.add_argument("-v", "--version", required=True)
+    parser.add_argument("-u", "--user", required=True)
+    parser.add_argument("-p", "--password", required=True)
     return parser.parse_args()
 
 if __name__ == "__main__":
