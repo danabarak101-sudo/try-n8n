@@ -28,6 +28,7 @@ if __name__ == "__main__":
         f"--mver '{args.version}' "
         f"--muser '{args.user}' "
         f"--mpass '{args.password}'"
+        f"--junitxml=tmp/results.xml"
     )
     print(f"Executing command: {command_str}")
     
